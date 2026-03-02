@@ -1,0 +1,14 @@
+{
+  "name": "aula-zero-websocket",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Exemplo mínimo de chat em modo texto com Node.js e WebSocket.",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node client.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
