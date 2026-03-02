@@ -1,6 +1,6 @@
 # Aula Zero: Introdução a WebSocket com chat em modo texto
 
-Esta aula substitui as duas primeiras aulas da disciplina. A proposta é fazer um primeiro contato com comunicação em tempo real usando `WebSocket`, de forma simples, gradual e prática.
+Esta aula é um primeiro contato com comunicação em tempo real usando `WebSocket`, de forma simples, gradual e prática.
 
 Nesta disciplina, vamos usar `WebSocket` como base para vários experimentos e projetos. Ele não é a única tecnologia possível para jogos multiplayer, nem sempre é a mais performática, mas é muito adequado para aprendizagem:
 
@@ -46,7 +46,23 @@ Nesta aula, basta termos uma ideia simples:
 
 Um protocolo, aqui, é apenas um conjunto de regras sobre como a comunicação acontece.
 
-## 3. O mínimo sobre HTTP
+## 3. Um pouco mais sobre conexão em rede
+
+Quando dois programas se comunicam pela rede, normalmente um deles precisa estar esperando conexões e o outro precisa iniciar a conexão.
+
+No nosso exemplo:
+
+- o servidor ficará escutando na porta `8080`;
+- o cliente tentará se conectar a esse servidor;
+- o endereço usado será `localhost`.
+
+Quando usamos `localhost`, estamos dizendo que cliente e servidor estão rodando na mesma máquina. Quando usamos uma porta, estamos indicando qual serviço daquela máquina queremos alcançar.
+
+Em outras palavras, `ws://localhost:8080` quer dizer: conecte, usando `WebSocket`, na minha própria máquina, na porta `8080`.
+
+Isso já é suficiente para começar a entender o fluxo desta aula.
+
+## 4. O mínimo sobre HTTP
 
 `HTTP` é um protocolo muito comum na web. Em geral, ele funciona no modelo:
 
@@ -63,7 +79,7 @@ Esse modelo funciona muito bem para várias coisas:
 
 Mas ele não é ideal, por si só, para comunicação contínua em tempo real entre vários participantes.
 
-## 4. Onde entra o WebSocket
+## 5. Onde entra o WebSocket
 
 `WebSocket` resolve exatamente esse problema: depois que a conexão é estabelecida, cliente e servidor mantêm um canal aberto para trocar mensagens continuamente.
 
@@ -83,7 +99,7 @@ Exemplos:
 - "posição atualizada";
 - "ação executada".
 
-## 5. Primeiro exemplo: um servidor WebSocket mínimo
+## 6. Primeiro exemplo: um servidor WebSocket mínimo
 
 Vamos usar `Node.js` e a biblioteca `ws`. Nesta pasta, o projeto já está pronto para execução. O objetivo desta parte é observar a ideia mínima antes de examinar o código completo.
 
@@ -107,7 +123,7 @@ Esse trecho mostra o essencial:
 - quando alguém conecta, o evento `connection` acontece;
 - a partir daí, temos um canal aberto com esse cliente.
 
-## 6. Primeiro exemplo: um cliente mínimo
+## 7. Primeiro exemplo: um cliente mínimo
 
 Agora um cliente bem pequeno:
 
@@ -126,7 +142,7 @@ Aqui:
 - o cliente tenta se conectar ao servidor;
 - quando a conexão abre, o evento `open` acontece.
 
-## 7. Enviando uma mensagem
+## 8. Enviando uma mensagem
 
 Depois de conectado, o cliente pode enviar dados:
 
@@ -152,7 +168,7 @@ Essa já é a ideia central de boa parte dos sistemas multiplayer:
 - o outro recebe;
 - algo acontece em resposta a isso.
 
-## 8. Melhorando: mensagens estruturadas com JSON
+## 9. Melhorando: mensagens estruturadas com JSON
 
 Em vez de mandar texto solto, é melhor mandar mensagens estruturadas.
 
@@ -188,7 +204,7 @@ Por exemplo:
 - `attack`
 - `ready`
 
-## 9. Retransmitindo para vários clientes
+## 10. Retransmitindo para vários clientes
 
 Se quisermos que todos os conectados vejam uma mensagem, o servidor pode retransmiti-la:
 
@@ -202,7 +218,7 @@ for (const cliente of servidor.clients) {
 
 Essa ideia de receber de um cliente e distribuir para vários outros também aparece o tempo todo em jogos multiplayer.
 
-## 10. Lendo entrada do teclado no terminal
+## 11. Lendo entrada do teclado no terminal
 
 Como nesta aula queremos evitar HTML e interface gráfica, o cliente vai funcionar no terminal.
 
@@ -223,7 +239,7 @@ rl.on('line', (linha) => {
 
 Assim, cada linha digitada pode virar uma mensagem enviada ao servidor.
 
-## 11. Como tudo se junta
+## 12. Como tudo se junta
 
 O fluxo do programa é este:
 
@@ -235,7 +251,23 @@ O fluxo do programa é este:
 6. o servidor retransmite as mensagens para todos;
 7. todos os clientes exibem o resultado no terminal.
 
-## 12. Exemplo completo desta aula
+Diagrama do fluxo:
+
+```mermaid
+flowchart LR
+    A["Cliente 1 inicia conexão"] --> B["Servidor WebSocket em ws://localhost:8080"]
+    C["Cliente 2 inicia conexão"] --> B
+    A --> D["Envia mensagem join/chat"]
+    C --> E["Envia mensagem join/chat"]
+    D --> B
+    E --> B
+    B --> F["Servidor processa a mensagem"]
+    F --> G["Servidor retransmite para todos os clientes conectados"]
+    G --> A
+    G --> C
+```
+
+## 13. Exemplo completo desta aula
 
 O exemplo completo desta aula está nos arquivos desta pasta:
 
@@ -251,7 +283,7 @@ Esses arquivos implementam um chat textual simples:
 - todos os participantes recebem essas mensagens;
 - o servidor avisa quando alguém entra ou sai.
 
-## 13. Como executar o exemplo completo
+## 14. Como executar o exemplo completo
 
 Na pasta `aulas/aula-zero`:
 
@@ -276,7 +308,7 @@ npm run client
 
 4. informe nomes diferentes e teste a troca de mensagens.
 
-## 14. Estrutura das mensagens usadas
+## 15. Estrutura das mensagens usadas
 
 Cliente para servidor:
 
@@ -292,7 +324,7 @@ Servidor para clientes:
 { "type": "chat", "name": "Ana", "text": "Olá, pessoal." }
 ```
 
-## 15. O que observar neste exemplo
+## 16. O que observar neste exemplo
 
 Observe como o modelo é orientado a eventos:
 
@@ -310,7 +342,7 @@ Isso vai reaparecer ao longo da disciplina. Em um jogo, em vez de mensagens de c
 
 O mecanismo de base continua muito parecido.
 
-## 16. Exercício
+## 17. Exercício
 
 Nesta aula, o código-base já está pronto. O foco agora é ler o código, executar o exemplo e modificar o sistema.
 
@@ -329,7 +361,7 @@ Ao implementar esses recursos, pense em:
 - que resposta o servidor deve devolver ao cliente que fez o comando;
 - o que deve ser retransmitido para os demais clientes quando o nome mudar.
 
-## 17. O que observar ao fazer os comandos
+## 18. O que observar ao fazer os comandos
 
 No comando `/usuarios`, observe que o servidor precisa conhecer o estado global das conexões.
 
@@ -340,7 +372,7 @@ Esses dois recursos já introduzem duas ideias importantes para jogos multiplaye
 - consulta de estado compartilhado;
 - atualização de estado com propagação para os demais participantes.
 
-## 18. Encerramento
+## 19. Encerramento
 
 O objetivo desta aula não é construir um jogo completo. O objetivo é montar e entender uma base funcional mínima para comunicação em tempo real entre múltiplos usuários.
 
