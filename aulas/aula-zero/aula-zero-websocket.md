@@ -254,17 +254,14 @@ O fluxo do programa é este:
 Diagrama do fluxo:
 
 ```mermaid
-flowchart LR
-    A["Cliente 1 inicia conexão"] --> B["Servidor WebSocket em ws://localhost:8080"]
-    C["Cliente 2 inicia conexão"] --> B
-    A --> D["Envia mensagem join/chat"]
-    C --> E["Envia mensagem join/chat"]
-    D --> B
-    E --> B
-    B --> F["Servidor processa a mensagem"]
-    F --> G["Servidor retransmite para todos os clientes conectados"]
-    G --> A
-    G --> C
+flowchart TD
+    A["Cliente inicia conexão"] --> B["Servidor WebSocket<br/>ws://localhost:8080"]
+    B --> C["Servidor aceita a conexão"]
+    C --> D["Cliente envia join"]
+    D --> E["Servidor registra o usuário"]
+    E --> F["Cliente envia chat"]
+    F --> G["Servidor processa a mensagem"]
+    G --> H["Servidor retransmite para os clientes conectados"]
 ```
 
 ## 13. Exemplo completo desta aula
