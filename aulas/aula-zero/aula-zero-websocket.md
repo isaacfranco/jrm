@@ -10,6 +10,8 @@ Nesta disciplina, vamos usar `WebSocket` como base para vários experimentos e p
 - pode ser consumido por navegadores, aplicativos e motores de jogo;
 - ajuda a focar no modelo de comunicação antes de discutir otimizações mais avançadas.
 
+Nesta aula, vamos usar `JavaScript` com `Node.js` para os exemplos iniciais porque isso reduz o atrito de configuração e facilita os testes. Não é uma escolha obrigatória para os projetos da disciplina. Os jogos podem ser feitos com o motor ou com as tecnologias escolhidas por cada grupo, mas o padrão de comunicação adotado aqui será `WebSocket`.
+
 Ao final desta aula, você deverá ser capaz de:
 
 - entender a ideia básica de uma conexão persistente com `WebSocket`;
