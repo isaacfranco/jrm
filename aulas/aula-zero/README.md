@@ -2,6 +2,10 @@
 
 Esta pasta contém a Aula Zero da disciplina.
 
+Antes de executar os arquivos desta pasta, leia o conteúdo da aula:
+
+- [aula-zero-websocket.md](./aula-zero-websocket.md)
+
 Aqui você vai encontrar:
 
 - a aula em markdown: [aula-zero-websocket.md](./aula-zero-websocket.md);
@@ -9,7 +13,7 @@ Aqui você vai encontrar:
 - o cliente de exemplo: `client.js`;
 - a configuração do projeto em `package.json`.
 
-Comece lendo a [aula em markdown](./aula-zero-websocket.md). Depois, use os arquivos desta pasta para executar e explorar o exemplo.
+Depois da leitura, use os arquivos desta pasta para executar e explorar o exemplo.
 
 ## Sobre o uso de JavaScript nesta aula
 
