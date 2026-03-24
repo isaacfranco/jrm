@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 2 - Arena Web</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="panel" id="join-panel">
+        <h1>Arena Web</h1>
+        <p>Informe seu nome para entrar na arena.</p>
+        <div class="join-row">
+          <input id="name-input" type="text" maxlength="20" placeholder="Seu nome" />
+          <button id="connect-button">Entrar</button>
+        </div>
+      </section>
+
+      <section class="panel hidden" id="game-panel">
+        <div class="status-row">
+          <div>
+            <h2>Estado atual</h2>
+            <p id="status-text">Aguardando conexao.</p>
+          </div>
+          <button id="refresh-button">Atualizar estado</button>
+        </div>
+
+        <div id="map" class="map"></div>
+
+        <div class="controls">
+          <button data-direction="north">Norte</button>
+          <button data-direction="west">Oeste</button>
+          <button id="attack-button">Atacar</button>
+          <button data-direction="east">Leste</button>
+          <button data-direction="south">Sul</button>
+        </div>
+
+        <section class="players-panel">
+          <h2>Jogadores</h2>
+          <ul id="players-list"></ul>
+        </section>
+
+        <section class="log-panel">
+          <h2>Eventos</h2>
+          <ul id="log-list"></ul>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

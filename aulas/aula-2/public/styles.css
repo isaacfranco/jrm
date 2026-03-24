@@ -1,0 +1,115 @@
+:root {
+  color-scheme: dark;
+  font-family: Arial, sans-serif;
+  background: #10131a;
+  color: #e8edf6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #10131a;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.panel {
+  background: #171c26;
+  border: 1px solid #2d3647;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.join-row {
+  display: flex;
+  gap: 12px;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #3a4459;
+  background: #0f131b;
+  color: #e8edf6;
+}
+
+button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #3f82ff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a95ff;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.map {
+  margin: 20px 0;
+  display: grid;
+  gap: 6px;
+}
+
+.cell {
+  min-height: 72px;
+  border-radius: 10px;
+  border: 1px solid #364157;
+  background: #111722;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px;
+  font-size: 0.9rem;
+}
+
+.cell.me {
+  border-color: #3f82ff;
+  background: #162746;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.players-panel ul,
+.log-panel ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.players-panel li,
+.log-panel li {
+  margin-bottom: 8px;
+}

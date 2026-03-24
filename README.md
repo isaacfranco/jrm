@@ -13,3 +13,5 @@ As próximas aulas serão adicionadas ao índice abaixo.
 ## Índice de aulas
 
 - [Aula Zero](./aulas/aula-zero/README.md)
+- [Aula 1](./aulas/aula-1/README.md)
+- [Aula 2](./aulas/aula-2/README.md)
